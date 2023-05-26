@@ -48,8 +48,6 @@ public class AdminViewController implements Initializable {
     @FXML
     private Button edit;
     @FXML
-    private Button restock;
-    @FXML
     private Button delete;
 
     static ArrayList<Item> itemListA;
@@ -133,21 +131,7 @@ public class AdminViewController implements Initializable {
         refreshItem();
         saveItemData(itemListA);
     }
-    @FXML
-    public void restock() throws IOException {
-        Item selectItem = itemTableViewA.getSelectionModel().getSelectedItem();
 
-        if (selectItem != null) {
-            for (Item item : itemListA) {
-                if (item.equals(selectItem)) {
-                    item.setNum_of_copies(item.getNum_of_copies() + 1);
-                    break;
-                }
-            }
-            itemTableViewA.refresh();
-            saveItemData(itemListA);
-        }
-    }
     @FXML
     public void switchCustomer(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();

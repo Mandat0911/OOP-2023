@@ -90,9 +90,7 @@ public class CustomerViewController implements Initializable {
 
         Item selectedItem = rentTable.getSelectionModel().getSelectedItem();
 
-        rentTable.getItems().removeAll(
-                rentTable.getSelectionModel().getSelectedItems()
-        );
+        rentTable.getItems().removeAll(rentTable.getSelectionModel().getSelectedItems());
 
         currentCustomer.returnRental(selectedItem);
         currentCustomer.autoPromote();

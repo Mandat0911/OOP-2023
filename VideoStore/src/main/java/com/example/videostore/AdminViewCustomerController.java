@@ -30,6 +30,8 @@ public class AdminViewCustomerController implements Initializable {
     @FXML
     public Button addNewCustomer;
     @FXML
+    public Button promote;
+    @FXML
     private Button edit;
     @FXML
     private Button delete;
@@ -124,21 +126,22 @@ public class AdminViewCustomerController implements Initializable {
     }
 
 
-//    @FXML
-//    private void promoteCustomer() {
-//        Customer selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
-//
-//        if (selectedCustomer != null) {
-//            for (Customer customer : customerListA) {
-//                if (customer.equals(selectedCustomer)) {
-//                    customer.promoteCustomer();
-//                    break;
-//                }
-//            }
-//            refreshCustomer();
-//            showSuccessAlert("Promote Successful", "Customer Promoted Successfully!");
-//        }
-//    }
+    @FXML
+    private void promoteCustomer() throws IOException {
+        Customer selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
+
+        if (selectedCustomer != null) {
+            for (Customer customer : customerListA) {
+                if (customer.equals(selectedCustomer)) {
+                    customer.promoteCustomer();
+                    break;
+                }
+            }
+            saveCustomerData(customerListA);
+            refreshCustomer();
+            showSuccessAlert("Promote Successful", "Customer Promoted Successfully!");
+        }
+    }
     private void showSuccessAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

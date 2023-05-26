@@ -93,7 +93,8 @@ public class LoginController implements Initializable {
             ArrayList<Customer> customerList = readCustomers("VideoStore/doc/customers.txt", itemList);
 
             if (usernameInput.isEmpty() || passwordInput.isEmpty()) {
-                alert.setText("Please enter both Username and Password!");
+                alert.setStyle("-fx-font-style: italic;");
+                alert.setText("Enter Username & Password!");
                 return;
             }
             if (usernameInput.equals("admin") && passwordInput.equals("admin")) {
@@ -128,6 +129,7 @@ public class LoginController implements Initializable {
                         customerWindow.setScene(customerViewScene);
                         customerWindow.show();
 
+                        alert.setStyle("-fx-font-style: italic;");
                         alert.setText("Login successful!");
                         return;
                     } else {
