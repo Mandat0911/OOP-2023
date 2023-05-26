@@ -16,7 +16,7 @@ public class VideoStoreApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 650, 425);
         stage.setMaximized(false);
         stage.setResizable(false);
-        stage.setTitle("Genie Video Store");
+        stage.setTitle("Genie's Video Store");
         stage.setScene(scene);
         stage.show();
     }
