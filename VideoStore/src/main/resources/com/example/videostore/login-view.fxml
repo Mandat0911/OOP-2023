@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.LoginController">
+   <children>
+      <ImageView fitHeight="556.0" fitWidth="811.0" layoutX="-90.0" layoutY="-44.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/istockphoto-1327834811-170667a.jpg" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="227.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(27,29,31,0.96); -fx-background-radius: 0px 0px 20px 20px; -fx-border-style: solid; -fx-border-color: rgb(246,231,87); -fx-border-radius: 0px 0px 20px 20px; -fx-border-width: 0 1 1 1;" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="377.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="40.0" prefWidth="323.0" text="Genie's Video Store" textFill="WHITE" AnchorPane.bottomAnchor="296.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="64.0">
+                     <font>
+                        <Font name="Yu Gothic Medium" size="26.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="141.0" prefHeight="21.0" prefWidth="77.0" text="Username" textFill="WHITE" AnchorPane.bottomAnchor="238.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="141.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="23.0" layoutY="186.0" prefHeight="21.0" prefWidth="77.0" text="Password" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="username" layoutX="115.0" layoutY="136.0" onKeyPressed="#onEnterPress" prefHeight="31.0" prefWidth="196.0" promptText="username" AnchorPane.bottomAnchor="233.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="136.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="password" layoutX="115.0" layoutY="182.0" onKeyPressed="#onEnterPress" prefHeight="25.0" prefWidth="196.0" promptText="password">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <Label fx:id="alert" alignment="CENTER" contentDisplay="CENTER" layoutX="100.0" layoutY="215.0" prefHeight="63.0" prefWidth="240.0" textFill="#f6e757">
+                     <font>
+                        <Font name="System Italic" size="15.0" />
+                     </font></Label>
+                  <Button fx:id="login" layoutX="114.0" layoutY="278.0" mnemonicParsing="false" onAction="#checkLogin" prefHeight="31.0" prefWidth="196.0" style="-fx-background-color: rgb(246,231,87);" text="Login" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="67.0" AnchorPane.topAnchor="278.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

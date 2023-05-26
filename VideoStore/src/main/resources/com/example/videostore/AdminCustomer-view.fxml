@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.AdminViewCustomerController">
+   <children>
+      <Label layoutX="731.0" layoutY="8.0" prefHeight="26.0" prefWidth="55.0" text="Admin" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="customerTableView" layoutX="210.0" layoutY="90.0" prefHeight="340.0" prefWidth="580.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 0 0 0 10; -fx-border-radius: 0 0 0 10; -fx-border-color: #F6C61F;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="90.0">
+        <columns>
+          <TableColumn fx:id="id" text="ID" />
+          <TableColumn fx:id="name" text="Name" />
+            <TableColumn fx:id="address" text="Address" />
+            <TableColumn fx:id="phone" text="Phone" />
+            <TableColumn fx:id="customerType" prefWidth="96.79998779296875" text="Customer Type" />
+            <TableColumn fx:id="username" prefWidth="81.0" text="Username" />
+            <TableColumn fx:id="password" text="Password" />
+        </columns>
+      </TableView>
+      <Button fx:id="edit" layoutX="641.0" layoutY="430.0" mnemonicParsing="false" onAction="#editCustomer" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #0ECB81; -fx-background-radius: 0  0 0 0; -fx-border-width: 0 0 0 1; -fx-border-color: black;" text="EDIT" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="83.0" />
+      <Button fx:id="addNewCustomer" layoutX="565.0" layoutY="430.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #0ECB81; -fx-background-radius: 0 0 0 0; -fx-border-color: black; -fx-border-width: 0 0 0 1;" text="ADD" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="159.0" />
+      <Button fx:id="delete" layoutX="489.0" layoutY="430.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #0ECB81; -fx-background-radius: 0 0 0 10;" text="DELETE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="235.0" />
+      <ComboBox fx:id="searchBox" layoutX="210.0" layoutY="40.0" prefHeight="26.0" prefWidth="170.0" promptText="Choose search method" style="-fx-background-color: #F5F5F5;" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="420.0" />
+      <TextField fx:id="searchField" layoutX="381.0" layoutY="40.0" prefHeight="26.0" prefWidth="390.0" promptText="search box" style="-fx-background-color: #F5F5F5;" AnchorPane.leftAnchor="381.0" AnchorPane.rightAnchor="29.0" />
+      <ComboBox fx:id="customerGroup" layoutX="381.0" layoutY="40.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F5F5F5;" AnchorPane.leftAnchor="381.0" AnchorPane.rightAnchor="269.0" />
+      <VBox prefHeight="500.0" prefWidth="200.0" style="-fx-background-color: #F6C61F;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane prefHeight="145.0" prefWidth="2.0">
+               <children>
+                  <ImageView fitHeight="121.0" fitWidth="248.0" layoutX="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="30.0" layoutY="113.0" prefHeight="17.0" prefWidth="140.0" text="Genie's Video Store">
+                     <font>
+                        <Font name="Showcard Gothic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="12.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchItem" prefHeight="50.0" prefWidth="197.0" style="-fx-background-color: transparent;" text="Items" textFill="#303841">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/packaging.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="197.0" style="-fx-background-color: #eedb49; -fx-border-color: black; -fx-border-width: 0 0 0 2; -fx-border-insets: 10;" text="Customers" textFill="#303841">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/group.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="12.0" mnemonicParsing="false" onAction="#logout" prefHeight="50.0" prefWidth="197.0" style="-fx-background-color: transparent;" text="Logout" textFill="#303841">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
