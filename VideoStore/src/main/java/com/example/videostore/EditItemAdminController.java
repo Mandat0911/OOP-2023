@@ -78,6 +78,7 @@ public class EditItemAdminController implements Initializable {
         boolean feeValid = checkFee();
         boolean idUnique = checkUniqueId();
         if (idValid && titleValid && rentTypeValid && loanTypeValid && copiesValid && feeValid && idUnique){
+            // Set item properties
             newItem.setID(id.getText());
             newItem.setTitle(title.getText());
             newItem.setRent_Type(rentType.getValue());
@@ -178,7 +179,6 @@ public class EditItemAdminController implements Initializable {
             return false;
         }
     }
-
     // Check if ID is unique
     private boolean checkUniqueId() {
         if (!id.getText().contentEquals(editItem.getID())) {
@@ -260,6 +260,4 @@ public class EditItemAdminController implements Initializable {
             genre.setValue(editItem.getGenre());
         });
     }
-
-
 }

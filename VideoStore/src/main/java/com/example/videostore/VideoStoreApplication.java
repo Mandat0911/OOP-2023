@@ -11,7 +11,6 @@ import java.io.IOException;
 public class VideoStoreApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-
         FXMLLoader fxmlLoader = new FXMLLoader(VideoStoreApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 650, 425);
         stage.setMaximized(false);
@@ -20,7 +19,6 @@ public class VideoStoreApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     public static void main(String[] args) throws IOException {
         launch();
     }

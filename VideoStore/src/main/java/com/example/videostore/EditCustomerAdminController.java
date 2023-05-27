@@ -34,29 +34,23 @@ public class EditCustomerAdminController implements Initializable {
     private Button cancel;
     @FXML
     private TextField password;
-
     @FXML
     private TextField username;
-
     @FXML
     private ComboBox<String> customerType;
-
     @FXML
     private TextField id;
-
     @FXML
     private TextField name;
-
     @FXML
     private TextField address;
-
     @FXML
     private TextField phone;
     private Customer editCustomer;
     static ArrayList<Customer> customerListA;
     static ArrayList<Item> itemListA;
-    Pattern idPattern = Pattern.compile("^C\\d{3}$");
-    Pattern phonePattern = Pattern.compile("^0\\d{9}$");
+    Pattern idPattern = Pattern.compile("^C\\d{3}$"); // ID Regex
+    Pattern phonePattern = Pattern.compile("^0\\d{9}$"); // Phone Regex
 
     public void receiveCustomerToEdit(Customer customer) {
         editCustomer = customer;
@@ -137,33 +131,19 @@ public class EditCustomerAdminController implements Initializable {
             // Update customerListA
             for (int i = 0; i < customerListA.size(); i++) {
                 if (editCustomer.equals(customerListA.get(i))) {
-                    customerListA.set(i, updatedCustomer);
+                    customerListA.set(i, updatedCustomer); // Replace i as updatedCustomer
                     break;
                 }
             }
             closeButtonAction();
         } else {
+            // Pop up alert window
             alert.setTitle("Validation Error");
             alert.setHeaderText("Please fix the errors and try again.");
             alert.setContentText("There are validation errors in the form.");
             alert.showAndWait();
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @FXML
     private void closeButtonAction() {
         // Get a handle to the stage
@@ -171,12 +151,14 @@ public class EditCustomerAdminController implements Initializable {
         // Close the stage;
         stage.close();
     }
+    // Check Data
     private boolean checkData(String id, Pattern pattern) {
         return !pattern.matcher(id).find();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerType.getItems().addAll("Guest","Regular","VIP");
+        // Set the initial values of the input fields to the values of the editCustomer object
         Platform.runLater(() ->{
             id.setText(editCustomer.getID());
             name.setText(editCustomer.getName());

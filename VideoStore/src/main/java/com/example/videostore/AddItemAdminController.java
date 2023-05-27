@@ -1,6 +1,5 @@
 package com.example.videostore;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -9,12 +8,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 public class AddItemAdminController implements Initializable {
-
     @FXML
     private Label idCheck;
     @FXML
@@ -51,7 +48,6 @@ public class AddItemAdminController implements Initializable {
     private ComboBox<String> rentType;
     static ArrayList<Customer> customerListA;
     static ArrayList<Item> itemsListA;
-    static int itr;
     public void setCustomerDataA(ArrayList<Customer> customer) {
         customerListA = customer;
     }
@@ -59,7 +55,6 @@ public class AddItemAdminController implements Initializable {
         itemsListA = item;
     }
     Pattern idPattern = Pattern.compile("^I\\d{3}-\\d{4}$");
-
     @FXML
     public void confirm() throws IOException {
         boolean isValid = true;
@@ -129,6 +124,7 @@ public class AddItemAdminController implements Initializable {
         }
 
         if (isValid) {
+            // Create a new item with validated data
             Item newItem = new Item();
             newItem.setID(id.getText());
             newItem.setTitle(title.getText());
@@ -144,6 +140,7 @@ public class AddItemAdminController implements Initializable {
             itemsListA.add(newItem);
             closeButtonAction();
         } else {
+            // Show validation error alert
             alert.setTitle("Validation Error");
             alert.setHeaderText("Please fix the errors and try again.");
             alert.setContentText("There are validation errors in the form.");
@@ -163,13 +160,17 @@ public class AddItemAdminController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Add options to rentType dropdown
         rentType.getItems().addAll("Record", "DVD", "Game");
+        // Define action when an option is selected in rentType dropdown
         rentType.setOnAction(e ->{
             boolean isGameSelected = rentType.getValue().equals("Game");
-            genreLabel.setVisible(!isGameSelected);
-            genre.setVisible(!isGameSelected);
+            genreLabel.setVisible(!isGameSelected); // Show/hide genreLabel based on selection
+            genre.setVisible(!isGameSelected); // Show/hide genre dropdown based on selection
         });
+        // Add options to loanType dropdown
         loanType.getItems().addAll("2-day", "1-week");
+        // Add options to genre dropdown
         genre.getItems().addAll("Action", "Horror", "Drama", "Comedy");
     }
 }

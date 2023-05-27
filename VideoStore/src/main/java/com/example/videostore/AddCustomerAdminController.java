@@ -32,28 +32,19 @@ public class AddCustomerAdminController implements Initializable {
     private Button cancel;
     @FXML
     private TextField password;
-
     @FXML
     private TextField username;
-
     @FXML
     private ComboBox<String> customerType;
-
     @FXML
     private TextField id;
-
     @FXML
     private TextField name;
-
     @FXML
     private TextField address;
-
     @FXML
     private TextField phone;
-
-
     static ArrayList<Item> itemsListA;
-
     static ArrayList<Customer> customerListA;
     Pattern idPattern = Pattern.compile("^C\\d{3}$");
     Pattern phonePattern = Pattern.compile("^0\\d{9}$");
@@ -125,6 +116,7 @@ public class AddCustomerAdminController implements Initializable {
             passwordCheck.setText("");
         }
         if (isValid) {
+            // Create a new Customer object and set its properties
             Customer newCustomer = new Customer();
             newCustomer.setID(id.getText());
             newCustomer.setName(name.getText());
@@ -133,9 +125,11 @@ public class AddCustomerAdminController implements Initializable {
             newCustomer.setCustomer_type(customerType.getValue());
             newCustomer.setUsername(username.getText());
             newCustomer.setPassword(password.getText());
+            // Add the new customer to the list
             customerListA.add(newCustomer);
             closeButtonAction();
         } else {
+            // Display validation error message
             alert.setTitle("Validation Error");
             alert.setHeaderText("Please fix the errors and try again.");
             alert.setContentText("There are validation errors in the form.");
@@ -149,12 +143,12 @@ public class AddCustomerAdminController implements Initializable {
         // Close the stage;
         stage.close();
     }
-
     private boolean checkData(String id, Pattern pattern) {
         return !pattern.matcher(id).find();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Add options to customerType dropdown
         customerType.getItems().addAll(
                 "Guest",
                 "Regular",

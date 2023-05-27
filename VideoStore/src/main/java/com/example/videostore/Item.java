@@ -13,9 +13,9 @@ public class Item {
     private int Num_of_copies;
     private float Rent_fee;
     private String Genre; // DVD, Video Record
-
+    // Default constructor
     public Item() {}
-
+    // Constructor
     public Item(String ID, String title, String rent_Type, String loan_Type, int num_of_copies, float rent_fee) {
         this.ID = ID;
         Title = title;
@@ -24,7 +24,7 @@ public class Item {
         Num_of_copies = num_of_copies;
         Rent_fee = rent_fee;
     }
-
+    // Setter and Getter
     public String getID() {
         return ID;
     }
@@ -87,8 +87,9 @@ public class Item {
         try (Scanner sc = new Scanner(itemFile)) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                String[] itemData = line.split(",");
+                String[] itemData = line.split(","); // Put data from items.txt in an array.
 
+                // Extracting item data from the line
                 String id = itemData[0].trim();
                 String title = itemData[1].trim();
                 String director = itemData[2].trim();
@@ -96,26 +97,28 @@ public class Item {
                 int numCopies = Integer.parseInt(itemData[4].trim());
                 float rentalPrice = Float.parseFloat(itemData[5].trim());
 
+                // Creating a new Item object with the extracted data
                 Item newItem = new Item(id, title, director, format, numCopies, rentalPrice);
 
-                if (itemData.length > 6) {
-                    String genre = itemData[6].trim();
+                if (itemData.length > 6) { // Check item data from items.txt file
+                    String genre = itemData[6].trim(); // If the line contains genre information, extract and set it
                     newItem.setGenre(genre);
                 }
-                itemList.add(newItem);
+                itemList.add(newItem); // Adding the new item to the itemList
             }
         }
         return itemList;
     }
     public String itemFile() {
         String text;
-        if (this.getGenre() == null) {
+        if (this.getGenre() == null) { // Check if the genre is null
+            // If genre is null, construct the text without including the genre
             text = this.getID().trim() + "," + this.getTitle().trim() + "," + this.getRent_Type().trim() + "," + this.getLoan_Type().trim() + "," + this.getNum_of_copies() + "," + this.getRent_fee();
         } else {
+            // If genre is not null, include the genre in the text
             text = this.getID().trim() + "," + this.getTitle().trim() + "," + this.getRent_Type().trim() + "," + this.getLoan_Type().trim() + "," + this.getNum_of_copies() + "," + this.getRent_fee() + "," + this.getGenre().trim();
         }
         return text;
     }
-
 }
 

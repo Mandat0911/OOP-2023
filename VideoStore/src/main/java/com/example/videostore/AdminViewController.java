@@ -49,7 +49,6 @@ public class AdminViewController implements Initializable {
     private Button edit;
     @FXML
     private Button delete;
-
     static ArrayList<Item> itemListA;
     static ArrayList<Customer> customerListA;
     private ObservableList<Item> getItems() {
@@ -59,7 +58,6 @@ public class AdminViewController implements Initializable {
         item.addAll(itemListA);
         return item;
     }
-
     @FXML
     private void refreshItem() {
         //Set cell value factories for each column in the TableView
@@ -85,39 +83,48 @@ public class AdminViewController implements Initializable {
     }
     @FXML
     private void addItem() throws IOException {
+            // Load the FXML file for the Add Item view
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("AddItem-view.fxml"));
             DialogPane addItem = fxmlLoader.load();
 
+            // Get the controller for the Add Item view
             AddItemAdminController addItemController = fxmlLoader.getController();
             addItemController.setItemDataA(itemListA);
             addItemController.setCustomerDataA(customerListA);
 
+            // Create a dialog and set the Add Item view as its dialog pane
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.setDialogPane(addItem);
             dialog.setTitle("Add Item");
 
+            // Show the dialog and wait for the user's response
             Optional<ButtonType> clickedButton = dialog.showAndWait();
+            // Refresh the item list and save the updated item data
             refreshItem();
             saveItemData(itemListA);
-
     }
     @FXML
     private void editItem() throws IOException {
+        // Load the FXML file for the Edit Item view
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("EditItem-view.fxml"));
         DialogPane editItem = fxmlLoader.load();
 
+        // Get the controller for the Edit Item view
         EditItemAdminController editItemController = fxmlLoader.getController();
         editItemController.setItemDataA(itemListA);
         editItemController.setCustomerDataA(customerListA);
         editItemController.receiveItemToEdit(itemTableViewA.getSelectionModel().getSelectedItem());
 
+        // Show the dialog and wait for the user's response
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(editItem);
         dialog.setTitle("Edit item");
 
+        // Show the dialog and wait for the user's response
         Optional<ButtonType> result = dialog.showAndWait();
+        // Refresh the item list and save the updated item and customer data
         refreshItem();
         saveItemData(itemListA);
         saveCustomerData(customerListA);
@@ -125,38 +132,52 @@ public class AdminViewController implements Initializable {
     }
     @FXML
     private void deleteItem() throws IOException {
+        // Get the selected item from the table view
         Item selectedItem = itemTableViewA.getSelectionModel().getSelectedItem();
-
+        // Remove the selected item from the item list using a lambda express
         itemListA.removeIf(item -> item.equals(selectedItem));
+        // Refresh the item view to reflect the updated item list
         refreshItem();
+        // Save the updated item data to file
         saveItemData(itemListA);
     }
 
     @FXML
     public void switchCustomer(ActionEvent event) throws IOException {
+        // Load the FXML file for the Admin customer view
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("AdminCustomer-view.fxml"));
+        // Load the FXML file and get the root node of the scene graph
         Parent adminView = fxmlLoader.load();
 
+        // Create a new scene using the root node
         Scene adminViewScene = new Scene(adminView);
+        // Get the controller instance from the FXMLLoader
         AdminViewCustomerController adminViewCustomerController = fxmlLoader.getController();
+        // Set the data in the controller
         adminViewCustomerController.setItemDataA(itemListA);
         adminViewCustomerController.setCustomerDataA(customerListA);
 
-
+        // Get the current stage
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Set the new scene on the current stage
         currentStage.setScene(adminViewScene);
         currentStage.show();
     }
     @FXML
     private void logout(ActionEvent event) {
         try {
+            // Load the FXML file for the Login view
             FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            // Load the FXML file and get the root node of the scene graph
             Parent logoutView = loader.load();
 
+            // Create a new scene with the login view
             Scene logoutScene = new Scene(logoutView);
 
+            // Get the reference to the current stage
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Set the scene of the stage to the login scene
             window.setScene(logoutScene);
             window.show();
         } catch (IOException e) {
@@ -176,14 +197,11 @@ public class AdminViewController implements Initializable {
                 "Title", // Add "Title" option to searchBox
                 "Out of stock" // Add "Title" option to searchBox
         );
-
         Platform.runLater(() -> {
             refreshItem(); // Refresh the items
             // Create a filtered list based on the items
             FilteredList<Item> searchItem = new FilteredList<>(getItems(), p -> true);
             itemTableViewA.setItems(searchItem); // Set the table's items to the filtered list
-
-
             searchField.textProperty().addListener((obs, oldValue, newValue) -> {
                 String selectedSearchOption = searchBox.getValue(); // Get the selected search option
 
@@ -207,17 +225,19 @@ public class AdminViewController implements Initializable {
                     });
                 }
             });
-
+            // Add a listener to the searchBox selection property
             searchBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+                // Check if the selected value is "Out of stock"
                 if ("Out of stock".equals(newVal)) {
+                    // Set the searchField text to "0" and hide the searchField
                     searchField.setText("0");
                     searchField.setVisible(false);
                 } else {
+                    // Clear the searchField text and show the searchField
                     searchField.setText("");
                     searchField.setVisible(true);
                 }
             });
         });
     }
-
 }

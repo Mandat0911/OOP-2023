@@ -53,39 +53,53 @@ public class AddRentalPopupController implements Initializable {
     }
     @FXML
     private void refreshItem() {
-        itemID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        itemTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        itemRentType.setCellValueFactory(new PropertyValueFactory<>("Rent_Type"));
-        itemLoanType.setCellValueFactory(new PropertyValueFactory<>("Loan_Type"));
-        itemCopies.setCellValueFactory(new PropertyValueFactory<>("Num_of_copies"));
-        itemFee.setCellValueFactory(new PropertyValueFactory<>("Rent_fee"));
-        itemGenre.setCellValueFactory(new PropertyValueFactory<>("Genre"));
+        // Set cell value factories for each column
+        itemID.setCellValueFactory(new PropertyValueFactory<>("ID")); // ID column
+        itemTitle.setCellValueFactory(new PropertyValueFactory<>("Title")); // Title column
+        itemRentType.setCellValueFactory(new PropertyValueFactory<>("Rent_Type")); // Rent Type column
+        itemLoanType.setCellValueFactory(new PropertyValueFactory<>("Loan_Type")); // Loan Type column
+        itemCopies.setCellValueFactory(new PropertyValueFactory<>("Num_of_copies")); // Number of copies column
+        itemFee.setCellValueFactory(new PropertyValueFactory<>("Rent_fee")); // Rent fee column
+        itemGenre.setCellValueFactory(new PropertyValueFactory<>("Genre")); // Genre column
+        // Set the rented items of the table view
         itemTableView.setItems(getItems());
     }
     public void cancel(ActionEvent event) throws IOException {
+        // Load the Customer-view.fxml file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Customer-view.fxml"));
         Parent customerView = loader.load();
+        // Create a new scene with the loaded FXML file
         Scene customerViewScene = new Scene(customerView);
 
+        // Get the current window (stage)
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        // Set the scene of the window to the customerViewScene
         window.setScene(customerViewScene);
+        // Show the window
         window.show();
     }
     public void confirm(ActionEvent event) throws IOException {
         Item selectItem = itemTableView.getSelectionModel().getSelectedItem();
         if (selectItem.getNum_of_copies() > 0) {
+            // Load the Customer-view.fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Customer-view.fxml"));
             Parent customerView = loader.load();
 
+            // Create a new scene for the customer view
             Scene customerViewScene = new Scene(customerView);
+            // Get the controller of the CustomerViewController
             CustomerViewController customerViewController = loader.getController();
+            // Pass the selected item to the controller
             customerViewController.receiveRentedItem(selectItem);
 
+            // Get the window (stage) of the current event
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Set the customer view scene in the window
             window.setScene(customerViewScene);
             window.show();
         } else {
+            // Display an error alert if the item is out of stock
             Alert alert = new Alert(Alert.AlertType.ERROR, "Item is out of stock!");
             alert.show();
         }
@@ -103,6 +117,7 @@ public class AddRentalPopupController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Refresh the item data on the JavaFX application thread
         Platform.runLater(this::refreshItem);
     }
 }

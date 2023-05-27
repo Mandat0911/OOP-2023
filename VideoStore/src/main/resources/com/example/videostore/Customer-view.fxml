@@ -8,10 +8,10 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.videostore.CustomerViewController">
    <children>
-      <TableView fx:id="rentTable" layoutX="210.0" layoutY="90.0" prefHeight="340.0" prefWidth="560.0" style="-fx-border-color: #F6C61F; -fx-border-radius: 0 0 0 20; -fx-background-radius: 0 0 0 20; -fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="90.0">
+      <TableView fx:id="rentTable" layoutX="210.0" layoutY="90.0" prefHeight="340.0" prefWidth="574.0" style="-fx-border-color: #F6C61F; -fx-border-radius: 0 0 0 20; -fx-background-radius: 0 0 0 20; -fx-background-color: #F5F5F5;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="90.0">
         <columns>
           <TableColumn fx:id="idColumn" minWidth="100.0" prefWidth="100.0" resizable="false" text="ID" />
-          <TableColumn fx:id="nameColumn" minWidth="210.0" prefWidth="458.0" text="Name" />
+          <TableColumn fx:id="nameColumn" minWidth="210.0" prefWidth="473.0" text="Name" />
         </columns>
       </TableView>
       <Label layoutX="210.0" layoutY="54.0" prefHeight="21.0" prefWidth="243.0" text="List of currently borrowed items" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="347.0">
@@ -81,14 +81,14 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="returnitem" layoutX="645.0" layoutY="430.0" mnemonicParsing="false" onAction="#deleteClick" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #0ECB81; -fx-background-radius: 0 0 20 20;" text="Return" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="30.0" />
+      <Button fx:id="returnitem" layoutX="664.0" layoutY="430.0" mnemonicParsing="false" onAction="#deleteClick" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #0ECB81; -fx-background-radius: 0 0 20 20;" text="Return" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="11.0" />
       <Label layoutX="598.0" layoutY="15.0" prefHeight="19.0" prefWidth="70.0" text="Customer:" textFill="#666464" AnchorPane.leftAnchor="598.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="currentRent" layoutX="629.0" layoutY="56.0" />
-      <Label fx:id="customerType" alignment="BASELINE_LEFT" contentDisplay="RIGHT" layoutX="722.0" layoutY="16.0" prefHeight="17.0" prefWidth="86.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="16.0">
+      <Label fx:id="customerType" alignment="BASELINE_RIGHT" contentDisplay="RIGHT" layoutX="722.0" layoutY="16.0" prefHeight="17.0" prefWidth="86.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="16.0">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
