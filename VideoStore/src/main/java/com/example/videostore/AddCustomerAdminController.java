@@ -1,24 +1,15 @@
 package com.example.videostore;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
-
-import static com.example.videostore.Save_Data.saveCustomerData;
 
 public class AddCustomerAdminController implements Initializable {
     @FXML
@@ -74,73 +65,83 @@ public class AddCustomerAdminController implements Initializable {
     }
     @FXML
     public void confirm() throws IOException {
-        boolean idValid = checkData(id.getText(), idPattern);
-        boolean nameValid = name.getText() != null;
-        boolean addressValid = address.getText() != null;
-        boolean phoneValid = checkData(phone.getText(), phonePattern);
-        boolean usernameValid = username.getText() != null;
-        boolean passwordValid = password.getText() != null;
+        boolean isValid = true;
+        Alert alert = new Alert(Alert.AlertType.WARNING);
 
-        if (idValid && nameValid && addressValid && phoneValid && usernameValid && passwordValid) {
-            Customer c = new Customer();
-            c.setID(id.getText());
-            c.setName(name.getText());
-            c.setAddress(address.getText());
-            c.setPhone(phone.getText());
-            c.setCustomer_type(customerType.getValue());
-            c.setUsername(username.getText());
-            c.setPassword(password.getText());
-            customerListA.add(c);
+        // Validate ID
+        if (checkData(id.getText(), idPattern)) {
+            idCheck.setText("Invalid customer ID!");
+            isValid = false;
+        } else if (customerListA.stream().anyMatch(customer -> customer.getID().startsWith(id.getText()))) {
+            idCheck.setText("Customer ID already exist!");
+            isValid = false;
+        } else {
+            idCheck.setText("");
+        }
+
+        // Validate Name
+        if (name.getText().trim().isEmpty()) {
+            nameCheck.setText("Name cannot be empty!");
+            isValid = false;
+        } else {
+            nameCheck.setText("");
+        }
+
+        // Validate Address
+        if (address.getText().trim().isEmpty()) {
+            addressCheck.setText("Address cannot be empty!");
+            isValid = false;
+        } else {
+            addressCheck.setText("");
+        }
+
+        // Validate Phone Number
+        if (checkData(phone.getText(), phonePattern)) {
+            phoneCheck.setText("Invalid phone number!");
+            isValid = false;
+        } else if (customerListA.stream().anyMatch(customer -> customer.getPhone().startsWith(phone.getText()))) {
+            phoneCheck.setText("Phone number already exists");
+            isValid = false;
+        } else {
+            phoneCheck.setText("");
+        }
+
+        // Validate Username
+        if(username.getText().trim().isEmpty()) {
+            usernameCheck.setText("Username cannot be empty!");
+            isValid = false;
+        } else if (customerListA.stream().anyMatch(customer -> customer.getUsername().startsWith(username.getText()))) {
+            usernameCheck.setText("Username already exists");
+            isValid = false;
+        } else {
+            usernameCheck.setText("");
+        }
+
+        // Validate Password
+        if (password.getText().trim().isEmpty()) {
+            passwordCheck.setText("Password cannot be empty!");
+            isValid = false;
+        }else {
+            passwordCheck.setText("");
+        }
+        if (isValid) {
+            Customer newCustomer = new Customer();
+            newCustomer.setID(id.getText());
+            newCustomer.setName(name.getText());
+            newCustomer.setAddress(address.getText());
+            newCustomer.setPhone(phone.getText());
+            newCustomer.setCustomer_type(customerType.getValue());
+            newCustomer.setUsername(username.getText());
+            newCustomer.setPassword(password.getText());
+            customerListA.add(newCustomer);
             closeButtonAction();
         } else {
-            if (!idValid) {
-                idCheck.setText("Invalid customer ID");
-            } else {
-                for (Customer customer : customerListA) {
-                    if (id.getText().contains(customer.getID())) {
-                        idCheck.setText("ID already exists");
-                        break;
-                    }
-                }
-            }
-
-            if (!nameValid) {
-                nameCheck.setText("Name cannot be empty");
-            }
-
-            if (!addressValid) {
-                addressCheck.setText("Address cannot be empty");
-            }
-
-            if (!phoneValid) {
-                phoneCheck.setText("Invalid phone number");
-            } else {
-                for (Customer customer : customerListA) {
-                    if (phone.getText().contains(customer.getPhone())) {
-                        phoneCheck.setText("Phone number already exists");
-                        break;
-                    }
-                }
-            }
-
-            if (!usernameValid) {
-                usernameCheck.setText("Username cannot be empty");
-            } else {
-                for (Customer customer : customerListA) {
-                    if (username.getText().contains(customer.getUsername())) {
-                        usernameCheck.setText("Username already exists");
-                        break;
-                    }
-                }
-            }
-
-            if (!passwordValid) {
-                passwordCheck.setText("Password cannot be empty");
-            }
+            alert.setTitle("Validation Error");
+            alert.setHeaderText("Please fix the errors and try again.");
+            alert.setContentText("There are validation errors in the form.");
+            alert.showAndWait();
         }
     }
-
-
     @FXML
     private void closeButtonAction() {
         // Get a handle to the stage
@@ -150,7 +151,7 @@ public class AddCustomerAdminController implements Initializable {
     }
 
     private boolean checkData(String id, Pattern pattern) {
-        return pattern.matcher(id).find();
+        return !pattern.matcher(id).find();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

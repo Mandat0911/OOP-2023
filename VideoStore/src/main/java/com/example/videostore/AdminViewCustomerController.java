@@ -113,9 +113,8 @@ public class AdminViewCustomerController implements Initializable {
         dialog.setTitle("Edit Customer");
 
         Optional<ButtonType> clickedButton = dialog.showAndWait();
-            refreshCustomer();
-            saveCustomerData(customerListA);
-            showSuccessAlert("Edit Successful","Customer Edited Successfully!");
+        refreshCustomer();
+        saveCustomerData(customerListA);
     }
     @FXML
     private void deleteCustomer() throws IOException {

@@ -88,7 +88,7 @@
          </font>
       </Label>
       <Label fx:id="currentRent" layoutX="629.0" layoutY="56.0" />
-      <Label fx:id="customerType" alignment="CENTER" layoutX="722.0" layoutY="16.0" textFill="#666464" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="16.0">
+      <Label fx:id="customerType" alignment="BASELINE_LEFT" contentDisplay="RIGHT" layoutX="722.0" layoutY="16.0" prefHeight="17.0" prefWidth="86.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="16.0">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
