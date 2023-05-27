@@ -88,9 +88,14 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="630.0" layoutY="14.0" text="Customer" textFill="#666464" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="14.0">
+      <Label layoutX="630.0" layoutY="14.0" text="Customer: " textFill="#666464" AnchorPane.leftAnchor="598.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="customerType" alignment="CENTER" layoutX="722.0" layoutY="16.0" textFill="#666464" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="16.0">
+         <font>
+            <Font name="Arial" size="15.0" />
          </font>
       </Label>
    </children>

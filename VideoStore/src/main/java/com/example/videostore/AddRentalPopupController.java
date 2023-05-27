@@ -10,10 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -27,6 +24,8 @@ public class AddRentalPopupController implements Initializable {
     private Button confirm;
     @FXML
     private Button cancel;
+    @FXML
+    private Label customerType;
     @FXML
     private TableView<Item> itemTableView;
     @FXML
@@ -44,6 +43,8 @@ public class AddRentalPopupController implements Initializable {
     @FXML
     private TableColumn<Item, String> itemID;
     static ArrayList<Item> itemListA;
+    static ArrayList<Customer> customerList;
+    static int itr;
     public void setItemDataA(ArrayList<Item> item) {
         itemListA = item;
     }
