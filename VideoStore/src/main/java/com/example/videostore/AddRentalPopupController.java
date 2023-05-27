@@ -43,8 +43,6 @@ public class AddRentalPopupController implements Initializable {
     @FXML
     private TableColumn<Item, String> itemID;
     static ArrayList<Item> itemListA;
-    static ArrayList<Customer> customerList;
-    static int itr;
     public void setItemDataA(ArrayList<Item> item) {
         itemListA = item;
     }

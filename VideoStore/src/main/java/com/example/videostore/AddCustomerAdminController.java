@@ -73,84 +73,16 @@ public class AddCustomerAdminController implements Initializable {
         customerListA = customer;
     }
     @FXML
-    public void confirm(ActionEvent event) throws IOException {
-        Customer c = new Customer();
-        boolean idValid = false;
-        boolean nameValid = false;
-        boolean addressValid = false;
-        boolean phoneValid = false;
-        boolean usernameValid = false;
-        boolean passwordValid = false;
+    public void confirm() throws IOException {
+        boolean idValid = checkData(id.getText(), idPattern);
+        boolean nameValid = name.getText() != null;
+        boolean addressValid = address.getText() != null;
+        boolean phoneValid = checkData(phone.getText(), phonePattern);
+        boolean usernameValid = username.getText() != null;
+        boolean passwordValid = password.getText() != null;
 
-        //Check customerID
-        if(checkData(id.getText(), idPattern)){
-            idCheck.setText("");
-            idValid = true;
-        }else {
-            idCheck.setText("Invalid customer ID");
-        }
-
-        for(Customer customer:customerListA){
-            if(id.getText().contains(customer.getID())){
-                idValid = false;
-                idCheck.setText("ID already exist");
-            }
-        }
-        //Check name
-        if(!(name.getText() == null)) {
-            nameCheck.setText("");
-            nameValid = true;
-
-        }else {
-            nameCheck.setText("Name cannot be empty");
-        }
-        //Check address
-        if(!(address.getText() == null)) {
-            addressCheck.setText("");
-            addressValid = true;
-
-        }else {
-            addressCheck.setText("Address cannot be empty");
-        }
-        //Check Phone
-        if(checkData(phone.getText(), phonePattern)){
-            phoneCheck.setText("");
-            phoneValid = true;
-        }else {
-            phoneCheck.setText("Invalid phone number");
-        }
-
-        for(Customer customer:customerListA){
-            if(phone.getText().contains(customer.getPhone())){
-                phoneValid = false;
-                phoneCheck.setText("Phone number already exist");
-            }
-        }
-        //Check username
-        if(!(username.getText() == null)) {
-            usernameCheck.setText("");
-            usernameValid = true;
-
-        }else {
-            usernameCheck.setText("Username cannot be empty");
-        }
-
-        for(Customer customer:customerListA){
-            if(username.getText().contains(customer.getUsername())){
-                usernameValid = false;
-                usernameCheck.setText("Username already exist");
-            }
-        }
-        //Check password
-        if(!(password.getText() == null)) {
-            passwordCheck.setText("");
-            passwordValid = true;
-
-        }else {
-            passwordCheck.setText("Password cannot be empty");
-        }
-
-        if(idValid && nameValid && addressValid && phoneValid && usernameValid && passwordValid){
+        if (idValid && nameValid && addressValid && phoneValid && usernameValid && passwordValid) {
+            Customer c = new Customer();
             c.setID(id.getText());
             c.setName(name.getText());
             c.setAddress(address.getText());
@@ -160,8 +92,54 @@ public class AddCustomerAdminController implements Initializable {
             c.setPassword(password.getText());
             customerListA.add(c);
             closeButtonAction();
+        } else {
+            if (!idValid) {
+                idCheck.setText("Invalid customer ID");
+            } else {
+                for (Customer customer : customerListA) {
+                    if (id.getText().contains(customer.getID())) {
+                        idCheck.setText("ID already exists");
+                        break;
+                    }
+                }
+            }
+
+            if (!nameValid) {
+                nameCheck.setText("Name cannot be empty");
+            }
+
+            if (!addressValid) {
+                addressCheck.setText("Address cannot be empty");
+            }
+
+            if (!phoneValid) {
+                phoneCheck.setText("Invalid phone number");
+            } else {
+                for (Customer customer : customerListA) {
+                    if (phone.getText().contains(customer.getPhone())) {
+                        phoneCheck.setText("Phone number already exists");
+                        break;
+                    }
+                }
+            }
+
+            if (!usernameValid) {
+                usernameCheck.setText("Username cannot be empty");
+            } else {
+                for (Customer customer : customerListA) {
+                    if (username.getText().contains(customer.getUsername())) {
+                        usernameCheck.setText("Username already exists");
+                        break;
+                    }
+                }
+            }
+
+            if (!passwordValid) {
+                passwordCheck.setText("Password cannot be empty");
+            }
         }
     }
+
 
     @FXML
     private void closeButtonAction() {
