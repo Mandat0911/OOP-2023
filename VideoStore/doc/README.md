@@ -32,4 +32,9 @@ The source code for this project can be found on GitHub at the following reposit
 
 [Project Repository](https://github.com/Mandat0911/OOP-2023.git)
 
+#### Admin 
+- [username] ("admin")
+- [password] ("admin")
+
+
 Please visit the repository for more details, access to the code, and to contribute to the project.
