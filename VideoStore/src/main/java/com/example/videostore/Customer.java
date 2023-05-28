@@ -186,7 +186,7 @@ public class Customer {
             item.setNum_of_copies(item.getNum_of_copies() + 1); // Increase the number of copies of the item
             this.setItemReturn(this.getItemReturn() + 1); // Increase the count of returned items
             this.setRentLimit(this.getRentLimit() - 1); // Decrease the rent limit count
-            this.setRewardPoint(this.getRewardPoint() + 5); // Increase the reward points
+            this.setRewardPoint(this.getRewardPoint() + 10); // Increase the reward points
             showInfoAlert("Item removed successfully!"); // Show a success message popup
         } else {
             showInfoAlert("You have not rented any items yet!"); // Show a message indicating no rented items found
@@ -209,7 +209,7 @@ public class Customer {
             this.setItemReturn(0);
         }
         // Check if the customer type is "Regular" and they have returned more than 3 items
-        if (this.getCustomer_type().contentEquals("Regular") && this.getItemReturn() > 3){
+        if (this.getCustomer_type().contentEquals("Regular") && this.getItemReturn() > 5){
             // Promote the customer to "VIP" type and reset the number of returned items
             this.setCustomer_type("VIP");
             this.setItemReturn(0);
