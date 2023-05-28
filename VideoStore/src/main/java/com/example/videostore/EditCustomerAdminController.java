@@ -71,8 +71,8 @@ public class EditCustomerAdminController implements Initializable {
         if (checkData(id.getText(), idPattern)) {
             idCheck.setText("Invalid customer ID!");
             isValid = false;
-        }else if (customerListA.stream().anyMatch(customer -> customer.getID().startsWith(id.getText()))) {
-            idCheck.setText("Customer ID already exist!");
+        } else if (!editCustomer.getID().equals(id.getText()) && customerListA.stream().anyMatch(customer -> customer.getID().startsWith(id.getText()))) {
+            idCheck.setText("Customer ID already exists!");
             isValid = false;
         } else {
             idCheck.setText("");
@@ -102,10 +102,10 @@ public class EditCustomerAdminController implements Initializable {
             phoneCheck.setText("");
         }
         // Validate Username
-        if(username.getText().trim().isEmpty()) {
+        if (username.getText().trim().isEmpty()) {
             usernameCheck.setText("Username cannot be empty!");
             isValid = false;
-        } else if (customerListA.stream().anyMatch(customer -> customer.getUsername().startsWith(username.getText()))) {
+        } else if (!editCustomer.getUsername().equals(username.getText()) && customerListA.stream().anyMatch(customer -> customer.getUsername().startsWith(username.getText()))) {
             usernameCheck.setText("Username already exists");
             isValid = false;
         } else {
