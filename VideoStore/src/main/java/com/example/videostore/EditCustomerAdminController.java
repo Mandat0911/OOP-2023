@@ -95,7 +95,7 @@ public class EditCustomerAdminController implements Initializable {
         if (checkData(phone.getText(), phonePattern)) {
             phoneCheck.setText("Invalid phone number!");
             isValid = false;
-        } else if (customerListA.stream().anyMatch(customer -> customer.getPhone().startsWith(phone.getText()))) {
+        } else if (!editCustomer.getPhone().equals(phone.getText()) && customerListA.stream().anyMatch(customer -> customer.getPhone().startsWith(phone.getText()))) {
             phoneCheck.setText("Phone number already exists");
             isValid = false;
         } else {
