@@ -80,7 +80,7 @@ public class AddRentalPopupController implements Initializable {
     }
     public void confirm(ActionEvent event) throws IOException {
         Item selectItem = itemTableView.getSelectionModel().getSelectedItem();
-        if (selectItem.getNum_of_copies() > 0) {
+        if (selectItem!= null && selectItem.getNum_of_copies() > 0) {
             // Load the Customer-view.fxml file
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Customer-view.fxml"));
@@ -98,6 +98,10 @@ public class AddRentalPopupController implements Initializable {
             // Set the customer view scene in the window
             window.setScene(customerViewScene);
             window.show();
+        } else if (selectItem == null) {
+            // Display an error alert if no item is selected
+            Alert alert = new Alert(Alert.AlertType.ERROR, "No item is selected!");
+            alert.show();
         } else {
             // Display an error alert if the item is out of stock
             Alert alert = new Alert(Alert.AlertType.ERROR, "Item is out of stock!");
